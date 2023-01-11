@@ -72,6 +72,11 @@ input::placeholder{
     cursor: pointer;
 }
 
+#filterByPriority{
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .singleNota{
     background-color: #303030;
     display: flex;

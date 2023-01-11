@@ -17,7 +17,8 @@ createApp({
         notas: this.getAllNotas(),
         campoFiltro: "",
         newNotaInputText: "",
-        searchNotaInputText: ""
+        searchNotaInputText: "",
+        priorityFilter: ""
     }
     },
     // MÉTODOS
@@ -57,6 +58,15 @@ createApp({
         },
         searchNota(){
             miArray = this.notas.filter((nota) => nota.nombre.toLowerCase().includes(this.searchNotaInputText.toLowerCase()));
+            if(this.priorityFilter == ""){
+                return this.ordenarArray(miArray);
+            }else{
+                resultado = miArray.filter((nota) => nota.prioridad == this.priorityFilter);
+                return this.ordenarArray(resultado);
+            }
+        },
+        filterByPriority(){
+            miArray = this.notas.filter((nota) => nota.prioridad == this.priorityFilter);
             return this.ordenarArray(miArray);
         },
         getAllNotas(){
@@ -69,6 +79,7 @@ createApp({
         },
         setPriority(nota, prioridad){
             nota.prioridad = prioridad;
+            localStorage.notas = JSON.stringify(this.notas);
         },
         deleteNota(task){
             var resultado = this.notas.filter(nota => nota.nombre != task.nombre);

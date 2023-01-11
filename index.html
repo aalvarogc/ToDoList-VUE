@@ -16,7 +16,14 @@
             <h1>Proyecto Vue - Álvaro García Campos</h1>
             <input type="text" id="notaInput" placeholder="¿Qué quieres recordar?" v-model="newNotaInputText" @keyup.enter="nuevaNota">
             <input type="text" id="searchNota" placeholder="🔍︎ Buscar..." v-model="searchNotaInputText" @keyup="searchNota">
-            <p id="errorText"></p>
+            <p>Filtrar por priorodidad:
+                <select name="" id="filterByPriority" v-model="priorityFilter" @change="searchNota()">
+                    <option value="">-------</option>
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                </select>
+            </p>
         </header>
         <div id="container">
             <p id="tareasPen">{{notasPendientes}} pendientes de un total de {{totalNotas}} <i class="fa-solid fa-chart-column"></i> <span id="pendientes"></span> | <span id="deleteAll" @click="deleteCompletedNotas()"><i class="fa-solid fa-x"></i> Borrar tareas completadas</span></p>
